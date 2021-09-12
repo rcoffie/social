@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect ,get_object_or_404
 from . models import * 
 from .forms import *
 from django.contrib import messages
@@ -21,3 +21,11 @@ def Index(request):
   context = {'posts':posts,'form':form}
   
   return render(request,'social/index.html',context)
+
+
+
+def postDetail(request, id):
+  post = get_object_or_404(Post, id=id)
+  context = {'post':post}
+  
+  return render(request,'social/detail.html',context)

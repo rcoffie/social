@@ -13,4 +13,11 @@ class Post(models.Model):
   
   
   
+class Comment(models.Model):
+  body = models.TextField()
+  author = models.ForeignKey(User, on_delete=models.CASCADE)
+  created_on = models.DateField(default=datetime.now)
+  
+  
+  
   
