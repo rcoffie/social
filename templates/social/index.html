@@ -9,8 +9,13 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-6">
-      <form action="" method="POST">
+    <div x-data="{open: false }" class="col-md-6">
+     
+      
+      <i @click="open = ! open" class="bi bi-toggle-off" width="40" height="40" ></i>
+      
+      <form x-show="open" action="" method="POST">
+        {% csrf_token %}
         {{ form | crispy }}
         <div class="d-grid gap-2 p-2">
          
