@@ -7,19 +7,28 @@
 
 
 <div class="container">
-  <div class="row">
+  <div class="row m-4 g-2">
 
-    <div x-data="{open: false }" class="col-md-6">
-     
+    <div  x-data="{open: false }" class="col-md-6">
+     {% if messages %}
+     {% for message in messages %}
+        
+        <div class="alert alert-success alert-dismissible fade show m-2 p-2" role="alert">
+          <strong> <i class="bi bi-box-arrow-right"></i> </strong> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+     {% endfor %}
+
+     {% endif %}
       
-      <i @click="open = ! open" class="bi bi-toggle-off" width="40" height="40" ></i>
+      <i @click="open = ! open" class="bi bi-toggle-off m-2 -p" width="40" height="40" >  </i>
       
       <form x-show="open" action="" method="POST">
         {% csrf_token %}
         {{ form | crispy }}
         <div class="d-grid gap-2 p-2">
          
-          <button class="btn btn-success" type="submit">Post</button>
+          <button  class="btn btn-success" type="submit">Post</button>
         </div>
       </form>
     </div>
