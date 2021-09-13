@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags  %}
 
 {% block content %}
 
 <div class="container">
-  <div class="row">
+  <div class="row m-2 p-2">
     <div class="col-md-8">
-      {{ post.body }}
+     <p class=""> {{ post.body }}</p>  
+     {{ post.created_on }}
+     <hr>
+     
+     <div x-data="{ open: false }">
+      <button @click="open = ! open" class="btn btn-success"> <i class="bi bi-chat-left-text-fill"  ></i>  </button>
+      
+      <form action="" method="POST" class="m-2 p-2" x-show="open" x-transition >
+        {{ form | crispy }}
+        <input type="button" value="comment" class="btn btn-success mt-2 ">
+      </form>
+      
+     
+   
+    </div>
+
+      
     </div>
   </div>
 </div>

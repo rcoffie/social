@@ -21,7 +21,8 @@
 
      {% endif %}
       
-      <i @click="open = ! open" class="bi bi-toggle-off m-2 -p" width="40" height="40" >  </i>
+     <button @click="open = ! open" class="btn btn-outline-success mb-2"> <i  class="bi bi-toggle-off m-2 -p" width="40" height="40" x-transition>  </i> Post </button>
+      
       
       <form x-show="open" action="" method="POST">
         {% csrf_token %}

@@ -26,6 +26,7 @@ def Index(request):
 
 def postDetail(request, id):
   post = get_object_or_404(Post, id=id)
-  context = {'post':post}
+  form = CommentForm()
+  context = {'post':post,'form':form}
   
   return render(request,'social/detail.html',context)

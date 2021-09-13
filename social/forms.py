@@ -14,3 +14,17 @@ class PostForm(ModelForm):
   class Meta:
     model = Post 
     fields = ['body']
+    
+
+
+class CommentForm(ModelForm):
+  body = forms.CharField(
+    label = '',
+    widget=forms.Textarea(attrs={
+      'rows':'3',
+      'placeholder':'comment'
+    })
+  )
+  class Meta:
+    model = Comment 
+    fields = ['body']
