@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect ,get_object_or_404
+from django.shortcuts import render, redirect ,get_object_or_404,HttpResponseRedirect
 from . models import * 
 from .forms import *
 from django.contrib import messages
@@ -30,3 +30,22 @@ def postDetail(request, id):
   context = {'post':post,'form':form}
   
   return render(request,'social/detail.html',context)
+
+
+def editPost(request, id):
+  
+  post = get_object_or_404(Post, id=id)
+  form = PostForm(request.POST or None, instance=post)
+  if form.is_valid():
+    form.save() 
+    return HttpResponseRedirect('/'+id)
+  
+  context = {'form':form }
+  
+  return render(request,'social/edit.html',context)
+
+
+
+def deletePost(request, id):
+  post = Post.objects.get(id=id)
+  post.delete()
