@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect ,get_object_or_404,HttpResponseRed
 from . models import * 
 from .forms import *
 from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 
@@ -38,7 +39,7 @@ def editPost(request, id):
   form = PostForm(request.POST or None, instance=post)
   if form.is_valid():
     form.save() 
-    return HttpResponseRedirect('/'+id)
+    return HttpResponseRedirect(reverse('social:edit_post', args=[post.id]))
   
   context = {'form':form }
   

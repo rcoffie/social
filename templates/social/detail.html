@@ -8,6 +8,11 @@
     <div class="col-md-8">
       {{ post.author }} | {{ post.created_on }}
      <p class=""> {{ post.body }}</p>  
+     <br>
+     {% if  request.user == post.author %}
+     
+     <a href="{% url 'social:edit_post' post.id %}" class="btn btn-link text-decoration-none  m-2 p-2" role="button" aria-disabled="true">Edit</a>
+     {% endif %}
 
      <div x-data="{ open: false }">
       <button @click="open = ! open" class="btn btn-success"> <i class="bi bi-chat-left-text-fill"  ></i>  </button>
