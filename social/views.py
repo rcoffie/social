@@ -28,6 +28,14 @@ def Index(request):
 def postDetail(request, id):
   post = get_object_or_404(Post, id=id)
   form = CommentForm()
+  if request.method == 'POST':
+    body = request.POST['body']
+    author = request.user 
+    comment = Comment.objects.create(author=author,body=body,post=post)
+    comment.save()
+    return HttpResponseRedirect(reverse('social:post_detail', args=[post.id]))
+    
+    
   context = {'post':post,'form':form}
   
   return render(request,'social/detail.html',context)
