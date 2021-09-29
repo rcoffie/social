@@ -33,6 +33,21 @@
    
       
     </div>
+
+    <div class="col-md-8">
+      <span>comments</span>
+      <br>
+      {% if comments %}
+
+      {% for comment  in comments %}
+
+      <p>{{ comment.author }} | {{ comment.created_on }}</p>  
+       {{ comment.body }}
+       <hr>
+      {% endfor %}
+      {% else %}
+      {% endif %}
+    </div>
   </div>
 </div>
 

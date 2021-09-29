@@ -27,6 +27,7 @@ def Index(request):
 
 def postDetail(request, id):
   post = get_object_or_404(Post, id=id)
+  comments = Comment.objects.all()
   form = CommentForm()
   if request.method == 'POST':
     body = request.POST['body']
@@ -36,7 +37,7 @@ def postDetail(request, id):
     return HttpResponseRedirect(reverse('social:post_detail', args=[post.id]))
     
     
-  context = {'post':post,'form':form}
+  context = {'post':post,'form':form,'comments':comments}
   
   return render(request,'social/detail.html',context)
 
