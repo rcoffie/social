@@ -43,6 +43,14 @@
 
       <p>{{ comment.author }} | {{ comment.created_on }}</p>  
        {{ comment.body }}
+       {% if request.user == comment.author %}
+       
+       
+<button type="button" class="btn btn-link">Edit</button>
+
+<button type="button" class="btn btn-link">Delete</button>
+
+       {% endif %}
        <hr>
       {% endfor %}
       {% else %}
