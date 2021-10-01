@@ -57,16 +57,29 @@ def editPost(request, id):
 
 
 def deletePost(request, id):
-  post = Post.objects.get(id=id)
-  post.delete()
+  try:
+    post = Post.objects.get(id=id)
+    post.delete()
+  except: Post.DoesNotExist: 
+      post = None
 
 
 def editComment(request, id):
   
   comment = get_object_or_404(Comment, id=id) 
   form = CommentForm(request.POST or None, instance=comment)
-  if form.is_valide(): 
+  if form.is_valid(): 
     form.save()
     return HttpResponseRedirect(reverse('social:edit_comment', args=[post.id]))
   context = {'form':form}
   return render(request,'social/edit_comment.html',context)
+
+
+def deleteComment(request, id):
+  try:
+    comment = Comment.objects.get(id=id)
+    comment.delete() 
+  except Comment.DoesNotExist:
+    comment = None
+ 
+ 

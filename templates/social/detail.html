@@ -46,9 +46,11 @@
        {% if request.user == comment.author %}
        
        
-<button type="button" class="btn btn-link">Edit</button>
+<br>
+<a href="{% url 'social:edit_comment' comment.id %}"  class="btn btn-link text-decoration-none "> Edit</a>
+<a href="{% url 'social:delete_comment' comment.id %}"  class="btn btn-link text-decoration-none text-danger"> Delete </a>
 
-<button type="button" class="btn btn-link">Delete</button>
+
 
        {% endif %}
        <hr>
