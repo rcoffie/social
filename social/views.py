@@ -59,3 +59,14 @@ def editPost(request, id):
 def deletePost(request, id):
   post = Post.objects.get(id=id)
   post.delete()
+
+
+def editComment(request, id):
+  
+  comment = get_object_or_404(Comment, id=id) 
+  form = CommentForm(request.POST or None, instance=comment)
+  if form.is_valide(): 
+    form.save()
+    return HttpResponseRedirect(reverse('social:edit_comment', args=[post.id]))
+  context = {'form':form}
+  return render(request,'social/edit_comment.html',context)
