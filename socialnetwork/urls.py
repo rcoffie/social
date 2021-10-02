@@ -22,3 +22,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('social/',include('social.urls',namespace="social"))
 ]
+
+
