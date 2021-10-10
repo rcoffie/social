@@ -9,6 +9,7 @@ urlpatterns = [
     path('edit_comment/<int:id>/',views.editComment,name="edit_comment"),
     path('delete/<int:id>/',views.deletePost,name="delete_post"),
     path('delete_comment/<int:id>/',views.deleteComment,name="delete_comment"),
+    path('profile/<int:pk>/',views.Profile,name="profile"),
     path('<int:id>/',views.postDetail,name="post_detail"),
     
 ]
