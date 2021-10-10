@@ -7,39 +7,65 @@
 
 <div class="container">   
 
-  <div class="row">  
+  <div class="row ">  
 
-    <div class="col-md-8 ">
+    <div class="col-md-8 m-4 p-4">
 
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
+            <img src="{{ profile.picture.url }}" class=" m-2 p-2 img-fluid rounded-start"  alt="...">
+           
           </div>
+          
           <div class="col-md-8">
+            
             <div class="card-body">
               {% if profile.name %}
               <h5 class="card-title">{{ profile.name }}</h5>
               {% endif %}
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+              {% if profile.bio %}
+              <p class="card-text">{{ profile.bio }}</p>
+
+              {% endif %}
+              <p class="card-text">
+
+                {% if profile.birth_date %}
+                <small class=" text-muted">
+                   Date of Birth <i class="bi bi-calendar3"></i>: {{ profile.birth_date }}
+                </small>
+                {% endif %}
+                <br>
+                
+              
+                {% if profile.location%}
+                <small class="text-muted">
+                  Location <i class="bi bi-geo-alt-fill"></i>: {{ profile.location }}
+                </small>
+                {% endif %}
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-
-      {% if profile %}
-
-      {{ profile.name }}
-      
-      {% endif %}
-
-
+     <h4> Posts </h4>
+      {% if posts %}
       {% for post in posts %}
-
-          {{ post }}
+      <div  class="col-md-6 border-bottom m-2 p-2">
+        <a class="text-decoration-none link-dark " href="{% url 'social:post_detail' post.id %}"> 
+           <p>{{ post.author }} | {{ post.created_on }} </p>
+          {{ post.body | truncatewords:20 }}
+        </a>
+     
+      </div>
       {% endfor %}
+      {% endif %}
+    </div>
+
+
+  
     </div>
 
   </div>
