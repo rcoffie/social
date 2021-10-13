@@ -28,3 +28,10 @@ class CommentForm(ModelForm):
   class Meta:
     model = Comment 
     fields = ['body']
+    
+
+
+class ProfileUpdateForm(forms.ModelForm): 
+  class Meta: 
+    model = UserProfile 
+    fields = ['bio','birth_date','location','picture','name']

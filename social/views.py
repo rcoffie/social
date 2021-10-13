@@ -92,4 +92,18 @@ def Profile(request, pk):
   
   return render(request, 'social/profile.html',context)
   
- 
+  
+
+def EditProfile(request):
+  if request.method == 'POST': 
+    p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+    if p_form.is_valid():
+      return redirect('social:profile')
+  else:
+    p_form = ProfileUpdateForm(instance=request.user.profile)
+    
+  context = {
+    'p_form':p_form,
+  }
+  
+  return render(request, 'social/profile_edit.html',context )
