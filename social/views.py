@@ -98,7 +98,8 @@ def EditProfile(request):
   if request.method == 'POST': 
     p_form = ProfileUpdateForm(request.POST, instance=request.user.profile)
     if p_form.is_valid():
-      return redirect('social:profile')
+      p_form.save()
+      return HttpResponseRedirect(reverse('social:profile',args=[request.user.id]))
   else:
     p_form = ProfileUpdateForm(instance=request.user.profile)
     
