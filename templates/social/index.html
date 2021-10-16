@@ -38,11 +38,14 @@
     {% if posts %}
     {% for post in posts %}
     <div  class="col-md-6 border-bottom m-2 p-2">
-      <a class="text-decoration-none link-dark " href="{% url 'social:post_detail' post.id %}"> 
-         <p>{{ post.author }} | {{ post.created_on }} </p>
-        {{ post.body | truncatewords:20 }}
-      </a>
-   
+      <a class="text-decoration-none " href="{% url 'social:profile' post.author.profile.pk  %}"> <strong>@{{ post.author }} </strong>   </a>
+      <p> 
+        <a class="text-decoration-none link-dark " href="{% url 'social:post_detail' post.id %}"> 
+         
+          {{ post.body | truncatewords:20 }}
+        </a>
+      </p> 
+      <small> <i class="bi bi-stopwatch-fill"></i> {{ post.created_on }} </small>
     </div>
     {% endfor %}
     {% endif %}

@@ -147,6 +147,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "/social"
 ACCOUNT_EMAIL_REQUIRED = True 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
