@@ -11,6 +11,7 @@ urlpatterns = [
     path('delete_comment/<int:id>/',views.deleteComment,name="delete_comment"),
     path('profile/<int:pk>/',views.Profile,name="profile"),
     path('EditProfile/',views.EditProfile,name='EditProfile'),
+    path('followers/<int:id>',views.Follow,name='follow'),
     path('<int:id>/',views.postDetail,name="post_detail"),
     
 ]

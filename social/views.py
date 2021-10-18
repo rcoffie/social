@@ -3,6 +3,7 @@ from . models import *
 from .forms import *
 from django.contrib import messages
 from django.urls import reverse
+from django.http import HttpResponse 
 
 # Create your views here.
 
@@ -108,3 +109,16 @@ def EditProfile(request):
   }
   
   return render(request, 'social/profile_edit.html',context )
+
+
+def Follow(request, id):
+  profile = get_object_or_404(Profile, id=request.POST.get('profile_id'))
+  user_id = request.user.id 
+  if user_id is None:
+    return HttpResponse("please login to follow this use")
+  else: 
+    if profile.followers.filter(id=request.user.id).exists():
+      profile.followers.remove(request.user)
+    else:
+      profile.followers.add(request.user)
+  return redirect('/profile/'+str(profile.id))
