@@ -50,10 +50,10 @@
               <a class="btn btn-success" href="{% url 'social:EditProfile' %}" > Update Profile </a> 
               {% endif %}
 
-              <form action="" method=""  class="m-2">
+              <form action="{% url 'social:followers' profile.pk %}" method="POST"  class="m-2">
                 {% csrf_token %}
                 
-                <button type="submit" type="button" class="btn btn-success" name="profile_id" value="{{ object.id }}">  Follow <i class="bi bi-person-plus"></i> </button>
+                <button type="submit" type="button" class="btn btn-success" name="profile_id" value="{{ profile.user.id }}">  Follow <i class="bi bi-person-plus"></i> </button>
               </form>
 
               

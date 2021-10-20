@@ -112,13 +112,14 @@ def EditProfile(request):
 
 
 def Follow(request, id):
-  profile = get_object_or_404(Profile, id=request.POST.get('profile_id'))
+  profile = get_object_or_404(UserProfile, user_id=request.POST.get('profile_id'))
+  
   user_id = request.user.id 
   if user_id is None:
     return HttpResponse("please login to follow this use")
   else: 
-    if profile.followers.filter(id=request.user.id).exists():
+    if profile.followers.filter(user=request.user).exists():
       profile.followers.remove(request.user)
     else:
       profile.followers.add(request.user)
-  return redirect('/profile/'+str(profile.id))
+  return HttpResponseRedirect(reverse('social:profile',args=[profile.user.id]))
