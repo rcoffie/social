@@ -83,12 +83,14 @@ def deleteComment(request, id):
 def Profile(request, pk):
   profile = UserProfile.objects.get(user_id=pk)
   user = profile.user 
+  followers = profile.followers.count()
   posts = Post.objects.filter(author=user).order_by('created_on')
   
   context = {
     'user':user,
     'profile':profile, 
-    'posts':posts
+    'posts':posts,
+    'followers':followers
   }
   
   return render(request, 'social/profile.html',context)
@@ -118,7 +120,7 @@ def Follow(request, id):
   if user_id is None:
     return HttpResponse("please login to follow this use")
   else: 
-    if profile.followers.filter(user=request.user).exists():
+    if profile.followers.filter(id=request.user.id).exists():
       profile.followers.remove(request.user)
     else:
       profile.followers.add(request.user)
