@@ -63,7 +63,7 @@
             <form action="{% url 'social:followers' profile.pk %}" method="POST"  class="m-2">
               {% csrf_token %}
               
-              <button type="submit" type="button" class="btn btn-success" name="profile_id" value="{{ profile.user.id }}">  Unfollow  <i class="bi bi-person-plus"></i> </button>
+              <button type="submit" type="button" class="btn btn-success" name="profile_id" value="{{ profile.user.id }}">  Unfollow  <i class="bi bi-x-octagon"></i> </button>
             </form>
 
             {% else %}
