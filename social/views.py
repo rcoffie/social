@@ -121,7 +121,8 @@ def Follow(request, id):
   
   user_id = request.user.id 
   if user_id is None:
-    return redirect('/accounts/login')
+    return HttpResponse('sign up to  follow')
+    # return redirect('/accounts/login')
   else: 
     if profile.followers.filter(id=request.user.id).exists():
       profile.followers.remove(request.user)

@@ -44,18 +44,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     
+   
+    
     #django allauth 
      'allauth',
     'allauth.account',
     'allauth.socialaccount',
     
-    
-    #crispyform
+     #crispyform
     'crispy_forms',
     
     #local apps
     'pages',
     'social',
+    
+  
 ]
 
 SITE_ID = 1
@@ -149,4 +152,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "/social"
 ACCOUNT_EMAIL_REQUIRED = True 
+# LOGIN_URL = '/accounts/login'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
