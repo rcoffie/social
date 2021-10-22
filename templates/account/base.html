@@ -23,7 +23,7 @@
 
     <div>
       <strong>Menu:</strong>
-      <ul>
+     <!--  <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
@@ -32,12 +32,20 @@
         <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
         {% endif %}
       </ul>
-
+ -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
+          {% if user.is_authenticated %}
+          <li class="breadcrumb-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
+          {% else %}
+          <li class="breadcrumb-item"><a href="{% url 'account_login' %}">Sign In</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'account_signup' %}">Sign Up</a></li>
+          
+
+
+          {% endif %}
+          
         </ol>
       </nav>
     </div>
